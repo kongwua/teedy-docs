@@ -1,0 +1,31 @@
+version: '3'
+services:
+  teedy-server:
+    image: ghcr.io/fmaass/teedy-docs:latest
+    restart: unless-stopped
+    ports:
+      - 8080:8080
+    environment:
+      DOCS_BASE_URL: "https://docs.example.com"
+      DOCS_ADMIN_EMAIL_INIT: "admin@example.com"
+      # Default password is "admin". Override with a bcrypt hash for production.
+      # Generate one with: htpasswd -bnBC 5 "" 'yourpassword' | cut -d: -f2
+      # Escape $ as $$ in compose files.
+      #DOCS_ADMIN_PASSWORD_INIT: "$$2a$$05$$PcMNUbJvsk7QHFSfEIDaIOjk1VI9/E7IPjTKx.jkjPxkx2EOKSoPS"
+      DATABASE_URL: "jdbc:postgresql://teedy-db:5432/teedy"
+      DATABASE_USER: "teedy"
+      DATABASE_PASSWORD: "teedy"
+    volumes:
+      - ./docs/data:/data
+    depends_on:
+      - teedy-db
+
+  teedy-db:
+    image: postgres:17-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: "teedy"
+      POSTGRES_USER: "teedy"
+      POSTGRES_PASSWORD: "teedy"
+    volumes:
+      - ./docs/db:/var/lib/postgresql/data
