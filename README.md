@@ -3,10 +3,21 @@
 </h3>
 
 [![License: GPL v2](https://img.shields.io/badge/License-GPL%20v2-blue.svg)](https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html)
-[![Build and Publish](https://github.com/fmaass/teedy-docs/actions/workflows/build-deploy.yml/badge.svg)](https://github.com/fmaass/teedy-docs/actions/workflows/build-deploy.yml)
 
-> **This is an actively maintained fork of [sismics/docs](https://github.com/sismics/docs) (Teedy).**
-> It includes OIDC/SSO authentication, Java 21 + Jetty 12 modernization, security hardening, and multi-arch Docker images published to GHCR.
+> **This repository is forked from [fmaass/teedy-docs](https://github.com/fmaass/teedy-docs.git).**
+> 
+> The upstream project [fmaass/teedy-docs](https://github.com/fmaass/teedy-docs.git) is an actively maintained fork of [sismics/docs](https://github.com/sismics/docs) (Teedy), with OIDC/SSO authentication, Java 21 + Jetty 12 modernization, security hardening, and multi-arch Docker images.
+
+## Custom Modifications in This Fork
+
+This fork adds the following enhancement:
+
+- **`DOCS_COOKIE_SECURE` environment variable**: Control the Secure cookie flag for authentication cookies
+  - Default: `true` (secure, HTTPS only)
+  - Set to `false` for HTTP testing environments
+  - Modified `UserResource.java` and `OidcResource.java` login methods
+
+---
 
 Teedy is an open source, lightweight document management system for individuals and businesses.
 
