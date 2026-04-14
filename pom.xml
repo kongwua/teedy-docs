@@ -34,7 +34,7 @@
     <org.apache.lucene.version>10.4.0</org.apache.lucene.version>
     <org.imgscalr.imgscalr-lib.version>4.2</org.imgscalr.imgscalr-lib.version>
     <org.apache.pdfbox.pdfbox.version>2.0.36</org.apache.pdfbox.pdfbox.version>
-    <org.bouncycastle.bcprov-jdk18on.version>1.83</org.bouncycastle.bcprov-jdk18on.version>
+    <org.bouncycastle.bcprov-jdk18on.version>1.84</org.bouncycastle.bcprov-jdk18on.version>
 
     <org.hibernate.hibernate.version>6.6.18.Final</org.hibernate.hibernate.version>
     <fr.opensagres.xdocreport.version>2.1.0</fr.opensagres.xdocreport.version>
