@@ -7,6 +7,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 
 /**
  * Thread that consumes data from an input stream and logs it.
@@ -32,7 +33,7 @@ public class InputStreamReaderThread extends Thread {
     @Override
     public void run() {
         try {
-            BufferedReader reader = closer.register(new BufferedReader(new InputStreamReader(is)));
+            BufferedReader reader = closer.register(new BufferedReader(new InputStreamReader(is, StandardCharsets.UTF_8)));
             for (String line = reader.readLine(); line != null; line = reader.readLine()) {
                 if (logger.isDebugEnabled()) {
                     logger.debug(String.format(name + ": %s", line));

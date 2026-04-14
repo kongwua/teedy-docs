@@ -125,9 +125,9 @@ public class FileResource extends BaseResource {
             }
         }
         
-        // Keep unencrypted data temporary on disk
-        String name = fileBodyPart.getContentDisposition() != null ?
-                URLDecoder.decode(fileBodyPart.getContentDisposition().getFileName(), StandardCharsets.UTF_8) : null;
+        String rawName = fileBodyPart.getContentDisposition() != null ?
+                fileBodyPart.getContentDisposition().getFileName() : null;
+        String name = decodeFilename(rawName);
         long maxUploadSize = Long.parseLong(System.getenv().getOrDefault("DOCS_MAX_UPLOAD_SIZE", String.valueOf(500L * 1024 * 1024)));
         java.nio.file.Path unencryptedFile;
         long fileSize;
@@ -170,6 +170,29 @@ public class FileResource extends BaseResource {
         } catch (Exception e) {
             throw new ServerException("FileError", "Error adding a file", e);
         }
+    }
+    
+    private String decodeFilename(String rawName) {
+        if (rawName == null) {
+            return null;
+        }
+        if (rawName.contains("%")) {
+            return URLDecoder.decode(rawName, StandardCharsets.UTF_8);
+        }
+        String converted = new String(rawName.getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8);
+        if (isValidUTF8(converted)) {
+            return converted;
+        }
+        return rawName;
+    }
+    
+    private boolean isValidUTF8(String str) {
+        if (str == null) {
+            return false;
+        }
+        byte[] bytes = str.getBytes(StandardCharsets.UTF_8);
+        String reconstructed = new String(bytes, StandardCharsets.UTF_8);
+        return str.equals(reconstructed);
     }
     
     /**
