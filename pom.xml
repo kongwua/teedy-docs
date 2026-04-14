@@ -39,7 +39,7 @@
     <org.hibernate.hibernate.version>6.6.18.Final</org.hibernate.hibernate.version>
     <fr.opensagres.xdocreport.version>2.1.0</fr.opensagres.xdocreport.version>
     <xerces.xercesImpl.version>2.12.2</xerces.xercesImpl.version>
-    <com.twelvemonkeys.imageio.version>3.12.0</com.twelvemonkeys.imageio.version>
+    <com.twelvemonkeys.imageio.version>3.13.1</com.twelvemonkeys.imageio.version>
     <com.levigo.jbig2.levigo-jbig2-imageio.version>2.0</com.levigo.jbig2.levigo-jbig2-imageio.version>
     <com.github.jai-imageio.jai-imageio-jpeg2000.version>1.4.0</com.github.jai-imageio.jai-imageio-jpeg2000.version>
     <org.postgresql.postgresql.version>42.7.7</org.postgresql.postgresql.version>
