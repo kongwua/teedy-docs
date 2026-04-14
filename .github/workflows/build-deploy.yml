@@ -51,7 +51,7 @@ jobs:
         run: ./mvnw --batch-mode -Pprod clean install -DskipTests
 
       - name: Upload war artifact
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: docs-web.war
           path: docs-web/target/docs*.war
